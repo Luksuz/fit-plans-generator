@@ -8,7 +8,7 @@ interface Props {
   onGenerate: (recipeBook: RecipeBook, isComplete?: boolean) => void;
   isGenerating: boolean;
   onBack: () => void;
-  onProgress?: (progress: number, total: number) => void;
+  onProgress?: (progress: number) => void;
   onStartGenerating?: () => void;
 }
 
@@ -40,7 +40,7 @@ export default function RecipeBookForm({ onGenerate, isGenerating, onBack, onPro
         const progress = Math.min((elapsed / duration) * 100, 95); // Cap at 95% until done
         
         if (onProgress) {
-          onProgress(Math.floor(progress), 100);
+          onProgress(Math.floor(progress));
         }
       }, 500);
 
@@ -62,7 +62,7 @@ export default function RecipeBookForm({ onGenerate, isGenerating, onBack, onPro
       
       // Set to 100% and show result
       if (onProgress) {
-        onProgress(100, 100);
+        onProgress(100);
       }
       
       setTimeout(() => {
@@ -171,7 +171,7 @@ export default function RecipeBookForm({ onGenerate, isGenerating, onBack, onPro
               <h4 className="font-semibold text-brand-dark mb-1">AI-Powered Generation</h4>
               <p className="text-sm text-gray-600">
                 Your recipe book will be generated with beautiful images using DALL-E 3. 
-                Images are generated asynchronously, so you'll see them appear as they're created.
+                Images are generated asynchronously, so you&apos;ll see them appear as they&apos;re created.
               </p>
             </div>
           </div>

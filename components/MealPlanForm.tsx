@@ -8,7 +8,7 @@ interface Props {
   onGenerate: (mealPlan: MealPlan, isComplete?: boolean) => void;
   isGenerating: boolean;
   onBack: () => void;
-  onProgress?: (progress: number, total: number) => void;
+  onProgress?: (progress: number) => void;
   onStartGenerating?: () => void;
 }
 
@@ -51,7 +51,7 @@ export default function MealPlanForm({ onGenerate, isGenerating, onBack, onProgr
         const progress = Math.min((elapsed / duration) * 100, 95); // Cap at 95% until done
         
         if (onProgress) {
-          onProgress(Math.floor(progress), 100);
+          onProgress(Math.floor(progress));
         }
       }, 500);
 
@@ -73,7 +73,7 @@ export default function MealPlanForm({ onGenerate, isGenerating, onBack, onProgr
       
       // Set to 100% and show result
       if (onProgress) {
-        onProgress(100, 100);
+        onProgress(100);
       }
       
       setTimeout(() => {

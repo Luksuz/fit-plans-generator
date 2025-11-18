@@ -36,7 +36,7 @@ High-resolution, vibrant colors, professional composition.`;
       style: 'natural',
     });
 
-    const imageUrl = response.data[0].url;
+    const imageUrl = response.data?.[0]?.url;
     if (!imageUrl) {
       throw new Error('No image URL returned');
     }

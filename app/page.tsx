@@ -5,8 +5,6 @@ import MealPlanForm from '@/components/MealPlanForm';
 import RecipeBookForm from '@/components/RecipeBookForm';
 import MealPlanDisplay from '@/components/MealPlanDisplay';
 import RecipeBookDisplay from '@/components/RecipeBookDisplay';
-import LoadingSpinner from '@/components/LoadingSpinner';
-import StreamingMealPreview from '@/components/StreamingMealPreview';
 import { MealPlan, RecipeBook } from '@/lib/types';
 import { branding } from '@/lib/branding';
 
@@ -19,8 +17,6 @@ export default function Home() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatingType, setGeneratingType] = useState<'meal-plan' | 'recipe-book' | null>(null);
   const [streamProgress, setStreamProgress] = useState(0);
-  const [streamProgressText, setStreamProgressText] = useState('');
-  const [streamingMeals, setStreamingMeals] = useState<any[]>([]);
 
   const handleMealPlanGenerated = (mealPlan: MealPlan, isComplete: boolean = false) => {
     console.log('[Home] Meal plan updated:', isComplete ? 'complete' : 'partial', 'Days:', mealPlan.days.length);
@@ -33,8 +29,6 @@ export default function Home() {
       setIsGenerating(false);
       setGeneratingType(null);
       setStreamProgress(0);
-      setStreamProgressText('');
-      setStreamingMeals([]);
     }
   };
 
@@ -47,7 +41,6 @@ export default function Home() {
       setIsGenerating(false);
       setGeneratingType(null);
       setStreamProgress(0);
-      setStreamProgressText('');
     }
   };
 
@@ -64,13 +57,10 @@ export default function Home() {
     setIsGenerating(true);
     setGeneratingType(type);
     setStreamProgress(0);
-    setStreamProgressText('');
-    setStreamingMeals([]);
   };
 
-  const updateStreamProgress = (progress: number, total: number = 100) => {
+  const updateStreamProgress = (progress: number) => {
     setStreamProgress(progress);
-    setStreamProgressText(`${Math.round(progress)}% complete`);
   };
 
   return (
@@ -154,7 +144,7 @@ export default function Home() {
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Generate custom recipe collections with AI. Request specific themes like
-                  "5 healthy takeaway recipes" and get beautiful, branded PDFs.
+                  &ldquo;5 healthy takeaway recipes&rdquo; and get beautiful, branded PDFs.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-brand-primary/10 text-brand-primary px-3 py-1 rounded-full text-sm font-semibold">
@@ -240,7 +230,7 @@ export default function Home() {
                 </div>
 
                 <p className="text-sm text-gray-500 mt-6 text-center">
-                  Please don't close this window
+                  Please don&apos;t close this window
                 </p>
               </div>
             </div>
